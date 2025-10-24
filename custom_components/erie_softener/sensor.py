@@ -50,9 +50,9 @@ async def async_setup_entry(hass, entry, async_add_entities):
                 ErieStatusSensor(coordinator, "nr_regenerations", ""),
                 ErieStatusSensor(coordinator, "last_maintenance", ""),
                 ErieStatusSensor(coordinator, "total_volume", "L"),
-                ErieStatusSensor(coordinator, "status", ""),
                 ErieStatusSensor(coordinator, "percentage", "%"),
                 ErieStatusSensor(coordinator, "days_remaining", ""),
+                ErieStatus(coordinator),
                 ErieWarning(coordinator)]
 
     async_add_entities(entities)
@@ -128,9 +128,32 @@ class ErieWarning(Entity):
         status = self.coordinator.data
         if status != None:
             warning_string = ""
-            for warning in status[self.info_type]:
-                warning_string += "⚠️ " + warning["description"] + "\n"
-            return warning_string if warning_string != "" else None
+            if len(status[self.info_type]) > 0:
+                for warning in status[self.info_type]:
+                    warning_string += "⚠️ " + warning["description"] + "\n"
+                return warning_string if warning_string != "" else None
+        return None
+
+class ErieStatus(Entity):
+    """Representation of a sensor."""
+    def __init__(self, coordinator):
+        """Initialize the sensor."""
+        self.coordinator = coordinator
+        self.info_type = "status"
+
+    @property
+    def name(self):
+        """Return the name of the sensor."""
+        return f'{DOMAIN}.{self.info_type}'
+
+    @property
+    def state(self):
+        """Return the state of the sensor."""
+
+        _LOGGER.debug(f'{DOMAIN}: sensor: state: {self.coordinator.data}')
+        status = self.coordinator.data[self.info_type]
+        if status != None:
+            return status
         return None
 
 class ErieStatusSensor(Entity):
