@@ -50,6 +50,9 @@ async def async_setup_entry(hass, entry, async_add_entities):
                 ErieStatusSensor(coordinator, "nr_regenerations", ""),
                 ErieStatusSensor(coordinator, "last_maintenance", ""),
                 ErieStatusSensor(coordinator, "total_volume", "L"),
+                ErieStatusSensor(coordinator, "status", ""),
+                ErieStatusSensor(coordinator, "percentage", "%"),
+                ErieStatusSensor(coordinator, "days_remaining", ""),
                 ErieWarning(coordinator)]
 
     async_add_entities(entities)

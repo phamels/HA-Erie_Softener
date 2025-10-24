@@ -121,6 +121,9 @@ async def create_coordinator(hass, api):
                 "nr_regenerations": response.content["nr_regenerations"],
                 "last_maintenance": response.content["last_maintenance"],
                 "total_volume": response.content["total_volume"].split()[0],
+                "status": response_dashboard.content["status"]["title"],
+                "percentage": response_dashboard.content["status"]["percentage"],
+                "days_remaining": response_dashboard.content["status"]["days_remaining"],
                 "warnings": response_dashboard.content["warnings"]
             }
         except:
