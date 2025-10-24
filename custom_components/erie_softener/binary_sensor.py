@@ -12,7 +12,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.entity_component import EntityComponent
 from datetime import timedelta
-from erie_connect.client import ErieConnect
 from . import get_coordinator
 from .const import (
     DOMAIN,
