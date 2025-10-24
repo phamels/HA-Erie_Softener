@@ -77,11 +77,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     api = ErieConnect(entry.data[CONF_EMAIL],
                       entry.data[CONF_PASSWORD],
                       entry.data[CONF_BASE_URL],
-                      ErieConnect.Auth(entry.data[CONF_ACCESS_TOKEN],
+                      auth=ErieConnect.Auth(entry.data[CONF_ACCESS_TOKEN],
                                        entry.data[CONF_CLIENT_ID],
                                        entry.data[CONF_UID],
                                        entry.data[CONF_EXPIRY]),
-                      ErieConnect.Device(entry.data[CONF_DEVICE_ID],
+                      device=ErieConnect.Device(entry.data[CONF_DEVICE_ID],
                                          entry.data[CONF_DEVICE_NAME]))
     # Make sure coordinator is initialized.
     await create_coordinator(hass, api)
