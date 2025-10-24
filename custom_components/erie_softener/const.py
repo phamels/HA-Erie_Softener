@@ -21,5 +21,5 @@ CONF_DEVICE_NAME = "_conf_device_name"
 
 PRESET_BASE_URLS = [
     "https://connectmysoftenerapi.pentair.eu/api/erieapp/",
-    "https://softener-connect-api.vanmarcke.com/api/erieapp/v1/",
+    "https://softener-connect-api.vanmarcke.com/api/erieapp/",
 ]
