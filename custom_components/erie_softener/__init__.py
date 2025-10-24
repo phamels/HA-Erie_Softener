@@ -123,6 +123,7 @@ async def create_coordinator(hass, api):
                 "total_volume": response.content["total_volume"].split()[0],
                 "percentage": response_dashboard.content["status"]["percentage"],
                 "days_remaining": response_dashboard.content["status"]["days_remaining"],
+                "liters_left": response_dashboard.content["status"]["extra"].split()[0],
                 "status": response_dashboard.content["status"]["title"],
                 "warnings": response_dashboard.content["warnings"]
             }
