@@ -114,6 +114,8 @@ async def create_coordinator(hass, api):
             async with async_timeout.timeout(120):
                 response = await hass.async_add_executor_job(api.info)
                 response_dashboard = await hass.async_add_executor_job(api.dashboard)
+                _LOGGER.debug(f'{DOMAIN}: info response: {response.content}')
+                _LOGGER.debug(f'{DOMAIN}: dashboard response: {response_dashboard.content}')
             return {
                 "last_regeneration": response.content["last_regeneration"],
                 "nr_regenerations": response.content["nr_regenerations"],
