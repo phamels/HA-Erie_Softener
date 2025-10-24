@@ -1,0 +1,10 @@
+{
+  "domain": "erie_softener",
+  "version": "1.0.0",
+  "name": "Erie Softener",
+  "config_flow": true,
+  "documentation": "https://github.com/phamels/HA-Erie_Softener",
+  "dependencies": [],
+  "codeowners": ["@phamels"],
+  "requirements": ["erie-connect@git+https://github.com/phamels/erie-connect.git"]
+}
