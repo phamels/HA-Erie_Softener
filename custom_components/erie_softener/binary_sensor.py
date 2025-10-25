@@ -54,9 +54,13 @@ class ErieLowSaltBinarySensor(Entity):
         """Return the state of the sensor."""
         _LOGGER.debug(f'{DOMAIN}: sensor low_salt: state: {self.coordinator.data}')
         status = self.coordinator.data
-        if status != None and status["warnings"]:
-            return status["warnings"][0]["description"].find("Salt") != -1
+        if status:
+            return status
         return False
+        # status = self.coordinator.data
+        # if status != None and status["warnings"]:
+        #     return status["warnings"][0]["description"].find("Salt") != -1
+        # return False
 
 
 class ErieHolidayBinarySensor(Entity):

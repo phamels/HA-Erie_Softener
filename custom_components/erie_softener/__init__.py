@@ -114,8 +114,10 @@ async def create_coordinator(hass, api):
             async with async_timeout.timeout(120):
                 response = await hass.async_add_executor_job(api.info)
                 response_dashboard = await hass.async_add_executor_job(api.dashboard)
+                response_settings = await hass.async_add_executor_job(api.settings)
                 _LOGGER.debug(f'{DOMAIN}: info response: {response.content}')
                 _LOGGER.debug(f'{DOMAIN}: dashboard response: {response_dashboard.content}')
+                _LOGGER.debug(f'{DOMAIN}: settings response: {response_settings.content}')
             return {
                 "last_regeneration": response.content["last_regeneration"],
                 "nr_regenerations": response.content["nr_regenerations"],
@@ -126,8 +128,8 @@ async def create_coordinator(hass, api):
                 "liters_left": response_dashboard.content["status"]["extra"].split()[0],
                 "status": response_dashboard.content["status"]["title"],
                 "warnings": response_dashboard.content["warnings"],
-                "low_salt": response_dashboard.content["warnings"],
-                "holiday_mode": response_dashboard.content["status"]["holiday_mode"],
+                "low_salt": response_settings.content["notifications"]["salt_alarm"],
+                "holiday_mode": response_dashboard.content["holiday_mode"],
             }
         except:
             raise SensorUpdateFailed
