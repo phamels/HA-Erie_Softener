@@ -78,7 +78,7 @@ class ErieVolumeIncreaseSensor(Entity):
         """Return the state of the sensor."""
         sensor_name = f'sensor.{DOMAIN}_{self.info_type}'
         old_state = self.hass.states.get(f'{sensor_name}')
-        _LOGGER.debug(f'{sensor_name}: sensor: state: {self.coordinator.data} old_state: {old_state}')
+        _LOGGER.debug(f'{sensor_name}: sensor {sensor_name}: state : {self.coordinator.data} old_state: {old_state}')
         if self.coordinator.data != None and self.info_type in self.coordinator.data and old_state != None:
             old_value = self.get_int_from_sensor_value(old_state.state)
             new_value = self.get_int_from_sensor_value(self.coordinator.data[self.info_type])
@@ -125,7 +125,7 @@ class ErieWarning(Entity):
     def state(self):
         """Return the state of the sensor."""
 
-        _LOGGER.debug(f'{DOMAIN}: sensor: state: {self.coordinator.data}')
+        _LOGGER.debug(f'{DOMAIN}: sensor warning: state: {self.coordinator.data}')
         status = self.coordinator.data
         if status != None:
             warning_string = ""
@@ -151,7 +151,7 @@ class ErieStatus(Entity):
     def state(self):
         """Return the state of the sensor."""
 
-        _LOGGER.debug(f'{DOMAIN}: sensor: state: {self.coordinator.data}')
+        _LOGGER.debug(f'{DOMAIN}: sensor status: state: {self.coordinator.data}')
         status = self.coordinator.data[self.info_type]
         if status != None:
             return status
@@ -174,7 +174,7 @@ class ErieStatusSensor(Entity):
     def state(self):
         """Return the state of the sensor."""
 
-        _LOGGER.debug(f'{DOMAIN}: sensor: state: {self.coordinator.data}')
+        _LOGGER.debug(f'{DOMAIN}: sensor status_sensor: state: {self.coordinator.data}')
         status = self.coordinator.data
         if status != None:
             return status[self.info_type]

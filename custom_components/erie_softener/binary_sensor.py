@@ -52,7 +52,35 @@ class ErieLowSaltBinarySensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
+        _LOGGER.debug(f'{DOMAIN}: sensor low_salt: state: {self.coordinator.data}')
         status = self.coordinator.data
         if status != None and status["warnings"]:
             return status["warnings"][0]["description"].find("Salt") != -1
+        return False
+
+
+class ErieHolidayBinarySensor(Entity):
+    """Representation of a sensor."""
+
+    def __init__(self, coordinator):
+        """Initialize the sensor."""
+        self.coordinator = coordinator
+        self.info_type = "holiday_mode"
+
+    @property
+    def name(self):
+        """Return the name of the sensor."""
+        return f'{DOMAIN}.{self.info_type}'
+
+    @property
+    def device_class(self):
+        return "running"
+
+    @property
+    def state(self):
+        """Return the state of the sensor."""
+        _LOGGER.debug(f'{DOMAIN}: sensor holiday_mode: state: {self.coordinator.data}')
+        status = self.coordinator.data
+        if status:
+            return status
         return False

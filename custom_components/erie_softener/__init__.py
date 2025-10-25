@@ -125,7 +125,9 @@ async def create_coordinator(hass, api):
                 "days_remaining": response_dashboard.content["status"]["days_remaining"],
                 "liters_left": response_dashboard.content["status"]["extra"].split()[0],
                 "status": response_dashboard.content["status"]["title"],
-                "warnings": response_dashboard.content["warnings"]
+                "warnings": response_dashboard.content["warnings"],
+                "low_salt": response_dashboard.content["warnings"],
+                "holiday_mode": response_dashboard.content["status"]["holiday_mode"],
             }
         except:
             raise SensorUpdateFailed
