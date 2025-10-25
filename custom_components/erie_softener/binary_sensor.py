@@ -27,7 +27,8 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     coordinator = await get_coordinator(hass)
 
-    entities = [ErieLowSaltBinarySensor(coordinator)]
+    entities = [ErieLowSaltBinarySensor(coordinator),
+                ErieHolidayBinarySensor(coordinator)]
 
     async_add_entities(entities)
 
