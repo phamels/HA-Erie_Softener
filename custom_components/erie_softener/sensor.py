@@ -131,9 +131,9 @@ class ErieWarning(Entity):
             warning_string = ""
             if len(status[self.info_type]) > 0:
                 for warning in status[self.info_type]:
-                    warning_string += "⚠️ " + warning["description"] + "\n"
+                    warning_string += "⚠️ " + warning + "\n"
                 return warning_string if warning_string != "" else None
-        return None
+        return ""
 
 class ErieStatus(Entity):
     """Representation of a sensor."""
