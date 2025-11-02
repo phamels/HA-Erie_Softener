@@ -58,7 +58,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
     async_add_entities(entities)
 
-class ErieVolumeIncreasIncreaseSensor(Entity):
+class ErieVolumeIncreaseSensor(Entity):
 
     def __init__(self, hass, coordinator, info_type, sensor_name, unit):
         """Initialize the sensor."""
