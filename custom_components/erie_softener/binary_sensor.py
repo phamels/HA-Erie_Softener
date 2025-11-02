@@ -58,10 +58,10 @@ class ErieLowSaltBinarySensor(Entity):
         # if status:
         #     return int(status)
         # return False
-        # if status != None and status["warnings"]:
-            # return status["warnings"][0]["description"].find("Salt") != -1
-        if status != None and status['low_salt']:
-            return status['low_salt']
+        if status != None and status["warnings"]:
+            return status["warnings"][0]["description"].find("Salt") != -1
+        # if status != None and status['low_salt']:
+        #     return status['low_salt']
         return False
 
 
